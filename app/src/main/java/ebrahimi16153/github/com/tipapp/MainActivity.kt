@@ -14,6 +14,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ebrahimi16153.github.com.tipapp.components.InputFiled
 import ebrahimi16153.github.com.tipapp.ui.theme.Shapes
 import ebrahimi16153.github.com.tipapp.ui.theme.TipAppTheme
 import ebrahimi16153.github.com.tipapp.ui.theme.Typography
@@ -99,7 +103,9 @@ fun TopHeader(totalPrePerson: Double = 134.00) {
 // main content
 @Composable
 fun MainContent() {
-
+   val totalBillState = remember{
+       mutableStateOf("")
+   }
     Card(
         modifier = Modifier
             .fillMaxWidth(85f)
@@ -107,7 +113,10 @@ fun MainContent() {
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(width = 1.dp, color = Color.LightGray)
     ) {
-        Text(text = "Hello Again!!!")
+        Column() {
+            InputFiled(valueState  = totalBillState, labelId = "Enter Bill", enabled =true , isSingleLine =true , modifier = Modifier.fillMaxWidth())
+
+        }
 
     }
 

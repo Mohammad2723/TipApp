@@ -67,5 +67,6 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
     //icons
+     //noinspection GradleDependency
      implementation "androidx.compose.material:material-icons-extended:$compose_version"
 }

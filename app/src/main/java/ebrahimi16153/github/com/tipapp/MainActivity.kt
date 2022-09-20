@@ -1,6 +1,7 @@
 package ebrahimi16153.github.com.tipapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -66,7 +67,7 @@ fun MyApp(content: @Composable () -> Unit) {
 
 }
 
-// top header
+//top header
 @Composable
 fun TopHeader(totalPrePerson: Double = 134.00) {
 
@@ -109,6 +110,19 @@ fun TopHeader(totalPrePerson: Double = 134.00) {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MainContent() {
+  BillForm(){
+      // you can take value from BillForm
+
+      Log.d("Bill", it)
+  }
+
+}
+
+
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun BillForm(modifier: Modifier =Modifier,valueChange: (String)->Unit={}){
     val totalBillState = remember {
         mutableStateOf("")
     }
@@ -131,11 +145,12 @@ fun MainContent() {
                 labelId = "Enter Bill",
                 enabled = true,
                 isSingleLine = true,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = modifier,
                 onAction = KeyboardActions {
                     if (!validState) {
                         return@KeyboardActions
                     }else{
+                        valueChange(totalBillState.value.trim())
                         keyboardController?.hide()
                     }
                 }
@@ -147,6 +162,7 @@ fun MainContent() {
 
 
 }
+
 
 
 //PreViw Compose
